@@ -1,27 +1,47 @@
 public class Banco {
 
-    protected String nome;
-    protected double saldoInicial, aporte, depositar, sacar, saldoAtual;
+    protected String titular;
+    protected int cpf;
+    protected double saldoInicial = 0.0;
 
-    public void setNome(String nome){
-        this.nome = nome;
+
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
     }
 
-    public void setAporte(double aporte){
-        this.aporte = aporte;
+    public Double getSaldoInicial() {
+        return saldoInicial;
     }
 
-    public void setDepositar(double depositar){
-        this.depositar = depositar;
+    public void setSaldoInicial(Double saldoInicial) {
+        this.saldoInicial = saldoInicial;
     }
 
-    public void setSacar(double sacar){
-        this.sacar = sacar;
+    public void setTitular(String titular) {
+        this.titular = titular;
     }
 
-    public void depositar(){
-        saldoAtual += aporte;
+
+    public void depositar(double valor) {
+        if (valor > 0) {
+            saldoInicial += valor;
+            System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
+        } else {
+            System.out.println("Valor inválido para depósito.");
+        }
     }
-    
+
+    public void sacar(double valor) {
+        if (valor > 0 && saldoInicial >= valor) {
+            saldoInicial -= valor;
+            System.out.println("Saque de R$" + valor + " realizado com sucesso.");
+        } else {
+            System.out.println("Saldo insuficiente ou valor inválido.");
+        }
+    }
+
+    public String exibirDados() {
+        return  "Titular: " + titular + "\nCpf: " + cpf ;
+    }
 
 }
